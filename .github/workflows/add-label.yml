@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: Renato66/auto-label@v2
+      - uses: Renato66/auto-label@2fc6ce2
         if: github.event_name == 'issues' || ( github.event_name == 'issue_comment' && github.event.issue.state == 'closed')
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

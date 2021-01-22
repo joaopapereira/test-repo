@@ -1,16 +1,13 @@
-name: Labeling new issue
+name: Remove label on close
 on:
   issues:
-    types: ['reopened']
-  issue_comment:
-    types: ['created']
-    
+    types: ['closed']
+
 jobs:
-  build:
+  add-labels:
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://k8slt/closed-issue-label-action@sha256:84360552559e0de4dfaaeefcf1ea0a1070a6250621f98539caf3eaad9395feb7
-        if: github.event_name == 'issues' || ( github.event_name == 'issue_comment' && github.event.issue.state == 'closed')
+      - uses: docker://k8slt/github-labeler-action@sha256:059ccbafe84cbf8fab08211e14690b78b04b5cc8e95f2686f9cab53efb4a9586
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ignore-comments: true

@@ -7,7 +7,7 @@ jobs:
   add-labels:
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://k8slt/github-labeler-action@sha256:059ccbafe84cbf8fab08211e14690b78b04b5cc8e95f2686f9cab53efb4a9586
+      - uses: docker://k8slt/github-labeler-action@sha256:69b376b059806729c25c7d1f6cb0c88e1547eae6f57451414d108915bf4ddffd
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ignore-comments: true

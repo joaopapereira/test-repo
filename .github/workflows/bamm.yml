@@ -17,15 +17,13 @@ jobs:
       - run: |
           ytt version
           version=`ytt version`
-          echo "ytt version == $version"
           tag="${{ github.event.release.tag_name }}"
-          tool_version="$(echo $version | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')"
-          echo "tool_version == $tool_version"
-          if [[ "v${tool_version}" == "${tag}" ]];
+          tool_version="$(echo $version | sed 's/^.*v[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')"
+          if [[ "${tool_version}" == "${tag}" ]];
           then
             echo "Version match with latest"
             exit 0
           else
-            echo "Versions do not match $version != $release_version"
+            echo "Versions do not match $tool_version != $tag"
             exit 1
           fi

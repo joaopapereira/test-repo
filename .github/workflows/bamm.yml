@@ -13,10 +13,14 @@ jobs:
       - run: |
           ytt version
           version=`ytt version`
+          echo "ytt version == $version"
           release_version="${GITHUB_REF:1}"
+          echo "release_version == $release_version"
           if [[ "${version}" == *"$release_version"* ]];
           then
+            echo "Version match with latest"
             exit 0
           else
+            echo "Versions do not match $version != $release_version"
             exit 1
           fi

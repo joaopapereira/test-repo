@@ -18,7 +18,7 @@ jobs:
           ytt version
           version=`ytt version`
           tag="${{ github.event.release.tag_name }}"
-          tool_version="$(echo $version | sed 's/^.*v[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')"
+          tool_version="$(echo $version | sed 's/^.*[^0-9]\(v[0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')"
           if [[ "${tool_version}" == "${tag}" ]];
           then
             echo "Version match with latest"

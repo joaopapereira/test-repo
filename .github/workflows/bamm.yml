@@ -2,7 +2,11 @@ name: Checks after release is published
 on:
   release:
     types: ['published']
-
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to check'
+        required: true
 jobs:
   validate-github-action:
     runs-on: ubuntu-latest
@@ -14,7 +18,9 @@ jobs:
           ytt version
           version=`ytt version`
           echo "ytt version == $version"
-          release_version="$(echo $GITHUB_REF | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')"
+          v1=$($github.event.inputs.version || $GITHUB_REF)
+          echo "actual version: $v1"
+          release_version="$(echo $v1 | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')"
           echo "release_version == $release_version"
           if [[ "${version}" == "$release_version" ]];
           then

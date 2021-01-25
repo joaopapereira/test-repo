@@ -14,7 +14,7 @@ jobs:
           ytt version
           version=`ytt version`
           echo "ytt version == $version"
-          release_version="${GITHUB_REF:1}"
+          release_version="${github.event.release.tag_name:1}"
           echo "release_version == $release_version"
           if [[ "${version}" == *"$release_version"* ]];
           then

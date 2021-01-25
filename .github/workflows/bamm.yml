@@ -16,7 +16,7 @@ jobs:
           echo "ytt version == $version"
           release_version="$(echo $GITHUB_REF | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')"
           echo "release_version == $release_version"
-          if [[ "${version}" == *"$release_version"* ]];
+          if [[ "${version}" == "$release_version" ]];
           then
             echo "Version match with latest"
             exit 0
